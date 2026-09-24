@@ -46,7 +46,7 @@ void initMemory(int memory[]) {
     }
 }
 
-// Cargra instrcciones
+// Cargar instrucciones
 void loadProgram(int memory[]) {
     int instruction;
     int count = 0;
