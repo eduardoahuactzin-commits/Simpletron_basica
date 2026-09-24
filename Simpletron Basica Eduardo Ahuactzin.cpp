@@ -3,7 +3,7 @@
 
 #define MEMORY_SIZE 100
 
-// Códigos de operación SML
+// Codigos SML
 #define READ 10
 #define WRITE 11
 
@@ -20,7 +20,7 @@
 #define BRANCHZERO 42
 #define HALT 43
 
-// Prototipos de funciones
+// Funciones
 void initMemory(int memory[]);
 void loadProgram(int memory[]);
 void dump(int accumulator, int instructionCounter, int instructionRegister, 
@@ -39,14 +39,14 @@ int main() {
     return 0;
 }
 
-// Inicializa toda la memoria en 0
+// Inicializa memoria en 0
 void initMemory(int memory[]) {
     for (int i = 0; i < MEMORY_SIZE; i++) {
         memory[i] = 0;
     }
 }
 
-// Carga las instrucciones ingresadas por el usuario desde teclado
+// Cargra instrcciones
 void loadProgram(int memory[]) {
     int instruction;
     int count = 0;
@@ -63,10 +63,10 @@ void loadProgram(int memory[]) {
         }
 
         if (instruction == 9999) {
-            break; // Centinela recibido
+            break; // 
         }
 
-        // Validación del rango de palabras permitidas
+        // Validacion del rango de palabras
         if (instruction < -9999 || instruction > 9998) {
             printf("*** Palabra invalida. Debe estar entre -9999 y +9998. ***\n");
             continue;
@@ -80,7 +80,7 @@ void loadProgram(int memory[]) {
     printf("*** Iniciando ejecucion del programa ***\n\n");
 }
 
-// Muestra el vaciado (dump) de registros y memoria completa
+// Muestra los registros y memoria
 void dump(int accumulator, int instructionCounter, int instructionRegister, 
           int operationCode, int operand, const int memory[]) {
     printf("\nREGISTROS:\n");
@@ -102,7 +102,7 @@ void dump(int accumulator, int instructionCounter, int instructionRegister,
     printf("\n");
 }
 
-// Ciclo principal de búsqueda, decodificación y ejecución
+// Ciclo de busqueda y ejecucion
 void executeProgram(int memory[]) {
     int accumulator = 0;
     int instructionCounter = 0;
@@ -113,17 +113,17 @@ void executeProgram(int memory[]) {
     int running = 1;
 
     while (running && instructionCounter < MEMORY_SIZE) {
-        // Búsqueda (Fetch)
+        // busqueda
         instructionRegister = memory[instructionCounter];
 
-        // Decodificación (Decode)
+        // decode
         operationCode = instructionRegister / 100;
         operand = instructionRegister % 100;
 
-        // Avanzar el contador de instrucciones por defecto
+        
         instructionCounter++;
 
-        // Ejecución (Execute)
+        // ejecucion
         switch (operationCode) {
             case READ: {
                 int value;
@@ -209,6 +209,6 @@ void executeProgram(int memory[]) {
         }
     }
 
-    // Vaciado de registros y memoria al terminar
+    // mostrat registro y memoria al terminar
     dump(accumulator, instructionCounter, instructionRegister, operationCode, operand, memory);
 }
